@@ -12,7 +12,7 @@ class Recommend {
   @observable bannerList = [];
 
   @computed get banners() {
-    return this.bannerList;
+    return Array.from(this.bannerList);
   }
 
   // 获取banner

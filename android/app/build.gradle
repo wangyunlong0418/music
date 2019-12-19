@@ -176,9 +176,16 @@ android {
 
         }
     }
+
+    packagingOptions {
+        pickFirst '**/libjsc.so'
+        pickFirst '**/libc++_shared.so'
+    }
 }
 
 dependencies {
+    implementation "org.webkit:android-jsc:r241213"
+
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
