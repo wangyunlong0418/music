@@ -5,13 +5,24 @@ class Rank {
   @observable rankInfo = {};
 
   @computed get songRankList() {
-    return this.list || [];
-  };
+    return this.rankInfo.list || [];
+  }
+
+  @computed get sliceIndex() {
+    const index = this.songRankList.findIndex((song, i) => {
+      return song.tracks.length && !this.songRankList[i + 1].tracks.length;
+    });
+    return index + 1;
+  }
+
+  @computed get rankList() {
+    const {songRankList, sliceIndex} = this;
+    return songRankList.slice(0, sliceIndex) || [];
+  }
 
   @action.bound async getRankInfo() {
     const res = await request.get('/toplist/detail');
     this.rankInfo = res;
-    console.log(res);
   }
 }
 

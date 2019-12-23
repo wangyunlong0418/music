@@ -4,12 +4,13 @@ import {View, Text} from 'react-native';
 import {useRegisterStore} from '../../store';
 import store from './store';
 import {useRankStore} from '../../utils';
+import OfficialRank from './OfficialRank';
 
 const paths = ['rank'];
 const Rank = () => {
   useRegisterStore(paths, store);
   const rankStore = useRankStore();
-  const {getRankInfo} = rankStore;
+  const {getRankInfo, sliceIndex, rankList} = rankStore;
 
   useEffect(() => {
     getRankInfo();
@@ -17,7 +18,7 @@ const Rank = () => {
 
   return (
     <View>
-      <Text>Rank</Text>
+      <OfficialRank />
     </View>
   );
 };
