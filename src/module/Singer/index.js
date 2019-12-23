@@ -1,12 +1,60 @@
-import React from 'react';
-import {View, Text} from 'react-native';
+import React, {useEffect} from 'react';
+import {observer} from 'mobx-react';
+import {View, Text, StyleSheet} from 'react-native';
+import {useRegisterStore, useStore} from '../../store';
+import Scroller from '../../components/Scroller';
+import {alphaTypes, categoryTypes} from '../../constants';
+import {useSingerStore} from '../../utils';
+import store from './store';
+import Singers from './Singers';
 
-const Singer = () => {
+const paths = ['singer'];
+
+const Singer = props => {
+  const {scrollerBox} = styles;
+  useRegisterStore(paths, store);
+
+  const singerStore = useSingerStore();
+
+  const {getSingerList, updateKey} = singerStore;
+
+  const onChooseCategory = key => {
+    updateKey('category', key);
+    getSingerList();
+  };
+
+  const onChooseInitial = key => {
+    updateKey('initial', key);
+    getSingerList();
+  };
+
+  useEffect(() => {
+    getSingerList();
+  }, [getSingerList]);
+
   return (
     <View>
-      <Text>Singer</Text>
+      <View style={scrollerBox}>
+        <Scroller
+          title="分类(默认热门):"
+          scrollList={categoryTypes}
+          onChoose={onChooseCategory}
+        />
+        <Scroller
+          title="首字母:"
+          scrollList={alphaTypes}
+          onChoose={onChooseInitial}
+        />
+      </View>
+      <Singers {...props} />
     </View>
   );
 };
 
-export default Singer;
+const styles = StyleSheet.create({
+  scrollerBox: {
+    padding: 5,
+  },
+});
+
+export default observer(Singer);

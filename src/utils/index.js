@@ -9,6 +9,14 @@ export const useSingerStore = () => {
   return usePageStore(['singer']);
 };
 
+export const useRankStore = () => {
+  return usePageStore(['rank']);
+};
+
+export const useSingerDetailStore = () => {
+  return usePageStore(['singerDetail']);
+};
+
 export const isIphoneX = () => {
   const X_width = 375;
   const X_height = 812;

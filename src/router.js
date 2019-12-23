@@ -8,6 +8,7 @@ import {isIphoneX} from './utils';
 import Recommend from './module/Recommend';
 import Singer from './module/Singer';
 import Rank from './module/Rank';
+import SingerDetail from './module/SingderDetail';
 
 const MainNavigator = createMaterialTopTabNavigator(
   {
@@ -77,10 +78,12 @@ const AppNavigation = createStackNavigator(
         ) : null,
       },
     },
-    //   Detail: {
-    //     screen: Detail,
-    //     navigationOptions: {},
-    //   },
+    Detail: {
+      screen: SingerDetail,
+      navigationOptions: {
+        header: null,
+      },
+    },
     //   Search: {
     //     screen: Search,
     //     navigationOptions: {

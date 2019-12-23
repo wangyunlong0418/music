@@ -3,33 +3,24 @@ import {View, Text, Image, StyleSheet, Dimensions} from 'react-native';
 import Carousel from 'react-native-looped-carousel';
 
 const {width, height} = Dimensions.get('window');
+const size = {width, height: 180};
 
 const Slider = ({banners = []}) => {
     const [list, setList] = useState([]);
 
     useEffect(() => {
-        const aa = () => {
+        const upateList = () => {
             const bannerList = banners.map((banner) => {
                 return banner.imageUrl;
             })
             setList(bannerList);
         }
-        aa();
+        upateList();
 
     }, [banners]);
-    const size = {width, height: 160};
-    console.log(list, 111)
+    const { imageWrap, img } = style;
   return (
-    <View style={{flex: 1}} onLayout={this._onLayoutDidChange}>
-        {/* {
-                    list.map((url, index) => {
-                        return (
-                            <View style={size} key={index}>
-                                <Image style={{width, height: 160}} source={{uri: url}} />
-                            </View>
-                        )
-                    })
-                } */}
+    <View style={{ height: size.height, paddingLeft: 4,}}>
         {
             list.length > 0 ? 
             <Carousel
@@ -37,30 +28,45 @@ const Slider = ({banners = []}) => {
                 style={size}
                 autoplay
                 bullets
+                chosenBulletStyle={{backgroundColor: '#d44439'}}
                 >
                 {
                     list.map((url, index) => {
                         return (
                             <View style={size} key={index}>
-                                <Image style={{width, height: 160}} source={{uri: url}} />
+                                <Image style={img} source={{uri: url}} />
                             </View>
                         )
                     })
                 }
-            </Carousel> : <Text>11</Text>
+            </Carousel> : <View style={[size, imageWrap]}><Text>暂无图片</Text></View>
         }
       
     </View>
   );
 };
 
-// {banners.map((banner, index) => {
-//   const {imageUrl} = banner;
-//   return (
-//     <View key={index}>
-//       <Image style={size} source={{uri: imageUrl}} />
-//     </View>
-//   );
-// })}
+
+const style = StyleSheet.create({
+    sliderWrap: {
+        height: size.height, 
+        paddingLeft: 4,
+    },
+    imageWrap: {
+        width: width - 8,
+        justifyContent: 'center', 
+        alignItems: 'center',
+        fontSize: 16,
+        backgroundColor: '#ffffff',
+        color: '#ffffff',
+        flex: 1,
+        borderRadius: 6,
+    },
+    img: {
+        width: width - 8,
+        flex: 1,
+        borderRadius: 6,
+    }
+})
 
 export default Slider;
