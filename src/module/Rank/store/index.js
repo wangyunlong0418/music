@@ -20,6 +20,11 @@ class Rank {
     return songRankList.slice(0, sliceIndex) || [];
   }
 
+  @computed get globalRankList() {
+    const {songRankList, sliceIndex} = this;
+    return songRankList.slice(sliceIndex) || [];
+  }
+
   @action.bound async getRankInfo() {
     const res = await request.get('/toplist/detail');
     this.rankInfo = res;

@@ -9,6 +9,7 @@ import Recommend from './module/Recommend';
 import Singer from './module/Singer';
 import Rank from './module/Rank';
 import SingerDetail from './module/SingderDetail';
+import RankDetail from './module/RankDetail';
 
 const MainNavigator = createMaterialTopTabNavigator(
   {
@@ -84,12 +85,12 @@ const AppNavigation = createStackNavigator(
         header: null,
       },
     },
-    //   Search: {
-    //     screen: Search,
-    //     navigationOptions: {
-    //       header: null,
-    //     },
-    //   },
+    RankDetail: {
+      screen: RankDetail,
+      navigationOptions: {
+        header: null,
+      },
+    },
   },
   {
     initialRouteName: 'Main',

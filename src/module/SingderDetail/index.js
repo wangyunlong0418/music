@@ -4,7 +4,7 @@ import {Text, View} from 'react-native';
 import {useRegisterStore} from '../../store';
 import store from './store';
 import {useSingerDetailStore} from '../../utils';
-import Header from './Header';
+import Header from '../../components/Header';
 import SingerImg from './SingerImg';
 import HotSong from './HotSong';
 

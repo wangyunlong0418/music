@@ -17,6 +17,10 @@ export const useSingerDetailStore = () => {
   return usePageStore(['singerDetail']);
 };
 
+export const useRankDetailStore = () => {
+  return usePageStore(['rankDetail']);
+};
+
 export const isIphoneX = () => {
   const X_width = 375;
   const X_height = 812;

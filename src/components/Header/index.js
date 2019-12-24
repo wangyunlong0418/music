@@ -1,13 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import Icon from '../../components/Icon';
+import Icon from '../Icon';
 
 const SingderDetail = props => {
   const {headerWrap, nameWrap} = style;
   const {name, navigation} = props;
 
   const exit = () => {
-    console.log(1);
     navigation.goBack();
   };
 
